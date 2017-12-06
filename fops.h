@@ -9,6 +9,7 @@ struct file_operations fops=
 open:s1_open,
 read:s1_read,
 write:s1_write,
+llseek:s1_seek,
 release:s1_close
 };
 

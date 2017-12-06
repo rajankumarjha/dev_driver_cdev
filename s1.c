@@ -6,8 +6,7 @@ int majorno,minorno,nod;
 dev_t devid,devno;
 int ret,ret2,i;
 Dev *memory;
-vir virtual;
-
+int device_size,data_size,register_size,no_of_register;
 //EXPORT_SYMBOL(mysymbol);
 
 static int __init initfunc(void)
@@ -46,6 +45,14 @@ static int __init initfunc(void)
 	{
 		cdev_init(&memory[i].CDev,&fops);
 		memory[i].CDev.ops=&fops;
+		device_size=DEVICE_SIZE;
+		data_size=DATA_SIZE;
+		register_size=REGISTER_SIZE;
+		no_of_register=NO_OF_REGISTER;
+		memory[i].device_size=device_size;
+		memory[i].data_size=data_size;
+		memory[i].register_size=register_size;
+		memory[i].no_of_register=no_of_register;
 		devno=MKDEV(majorno,i);	
 		ret2=cdev_add(&memory[i].CDev,devno,nod);
 		if(ret2==-1)
